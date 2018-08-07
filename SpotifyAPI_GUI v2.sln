@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyAPI_GUI v2", "SpotifyAPI_GUI v2\SpotifyAPI_GUI v2.csproj", "{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C957A0A-5FA0-461B-A641-A2FCD4C60CCC}
+	EndGlobalSection
+EndGlobal
