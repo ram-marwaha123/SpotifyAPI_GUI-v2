@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpotifyAPI_GUI_v2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Spotify API App" Height="350" Width="525">
+    <Grid x:Name="ChoiceGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="515">
+        <Label Content="What function do you want to do?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Add Playlist" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="90" Click="AddPlaylist"/>
+        <Button Content="Update Playlist" HorizontalAlignment="Left" Margin="103,31,0,0" VerticalAlignment="Top" Width="90" Click="UpdatePlaylist"/>
+        <Button Content="Get Playlist" HorizontalAlignment="Left" Margin="198,31,0,0" VerticalAlignment="Top" Width="90" Click="GetPlaylist"/>
+        <Grid x:Name="AddPlaylistGrid" HorizontalAlignment="Left" Height="79" Margin="0,67,-1,-85" VerticalAlignment="Top" Width="516">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Playlist ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <Label Content="Playlist Name:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="Add_PlaylistID_TextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Margin="113,13,0,0" AutomationProperties.HelpText="Enter Playlist ID"/>
+            <Button Content="Find Playlist" HorizontalAlignment="Left" Margin="391,13,0,0" VerticalAlignment="Top" Width="96" Height="23" Click="FindPlaylist"/>
+            <Button Content="OK?" HorizontalAlignment="Left" Margin="391,42,0,0" VerticalAlignment="Top" Width="96" Height="23" Click="AddPlaylistToTable"/>
+            <Label x:Name="Add_PlaylistName_Label" Content="" HorizontalAlignment="Left" Margin="113,42,0,0" VerticalAlignment="Top" Width="260"/>
+        </Grid>
+        <Grid x:Name="UpdatePlaylistGrid" HorizontalAlignment="Left" Height="47" Margin="0,67,-1,-53" VerticalAlignment="Top" Width="516">
+            <Label Content="Playlist Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="101"/>
+            <ComboBox x:Name="Update_Playlist_ComboBox" HorizontalAlignment="Left" Margin="116,14,0,0" VerticalAlignment="Top" Width="257"/>
+            <Button Content="Update" HorizontalAlignment="Left" Margin="393,14,0,0" VerticalAlignment="Top" Width="93" Height="22" Click="Update"/>
+        </Grid>
+        <Grid x:Name="GetPlaylistGrid" HorizontalAlignment="Left" Height="253" Margin="0,67,-1,-259" VerticalAlignment="Top" Width="516">
+            <Label Content="Playlist:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="Get_Playlists_ComboBox" HorizontalAlignment="Left" Margin="117,10,0,0" VerticalAlignment="Top" Width="257"/>
+            <Button Content="GO" HorizontalAlignment="Left" Margin="396,10,0,0" VerticalAlignment="Top" Width="90" Height="22" Click="GetTracks"/>
+            <DataGrid x:Name="Get_Tracks_DataGrid" HorizontalAlignment="Left" Height="216" Margin="10,37,0,0" VerticalAlignment="Top" Width="496"/>
+        </Grid>
     </Grid>
+
 </Window>

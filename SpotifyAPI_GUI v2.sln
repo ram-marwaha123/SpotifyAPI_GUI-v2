@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyAPI_GUI v2", "SpotifyAPI_GUI v2\SpotifyAPI_GUI v2.csproj", "{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyClasses", "..\SpotifyClasses\SpotifyClasses\SpotifyClasses.csproj", "{2AD2BF49-2058-4E2D-9FC5-4BA235F725B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98546B5D-7758-4C8D-BB14-AEF7A54F6CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AD2BF49-2058-4E2D-9FC5-4BA235F725B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD2BF49-2058-4E2D-9FC5-4BA235F725B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD2BF49-2058-4E2D-9FC5-4BA235F725B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD2BF49-2058-4E2D-9FC5-4BA235F725B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
