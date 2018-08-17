@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.Serialization;
 using System.Data.SqlClient;
+using SpotifyClasses;
 
 namespace SpotifyAPI_GUI_v2
 {
@@ -43,6 +44,8 @@ namespace SpotifyAPI_GUI_v2
 
             spotify = new SpotifyAPIGetData();
 
+            artistTracks = server.GetAllArtistSongs();
+            
             AddPlaylistGrid.Visibility = Visibility.Collapsed;
             Add_PlaylistID_TextBox.Text = "";
             Add_PlaylistName_Label.Content = "";
@@ -51,6 +54,11 @@ namespace SpotifyAPI_GUI_v2
             PlaylistNameID = server.GetPlaylistNameID();
 
             GetPlaylistGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            server.closeConnection();
         }
 
         private void AddPlaylist(object sender, RoutedEventArgs e)
@@ -110,6 +118,7 @@ namespace SpotifyAPI_GUI_v2
             AddPlaylistGrid.Visibility = Visibility.Collapsed;
             UpdatePlaylistGrid.Visibility = Visibility.Collapsed;
 
+            Get_Playlists_ComboBox.Items.Clear();
             HashSet<string> PlaylistNames = server.GetPlaylistNames();
             if (PlaylistNames.Count > 1)
             {
@@ -124,11 +133,58 @@ namespace SpotifyAPI_GUI_v2
         private void GetTracks(object sender, RoutedEventArgs e)
         {
             string name = Get_Playlists_ComboBox.SelectedItem.ToString();
-            string cmd = String.Format("SELECT Title, Artist, Album, Explicit, Duration, Popularity, ReleaseDate FROM dbo.Playlists WHERE Playlist = '{0}'", name);
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd, server.connection);
+            SqlDataAdapter adapter = server.GetDataForDataGrid(name);
             DataTable dt = new DataTable("Playlist");
             adapter.Fill(dt);
             Get_Tracks_DataGrid.ItemsSource = dt.DefaultView;
+            Get_Tracks_DataGrid.Columns[3].Visibility = Visibility.Collapsed;
         }
+
+        private void Get_Tracks_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataRowView item = Get_Tracks_DataGrid.SelectedItem as DataRowView;
+            if (item != null)
+            {
+                string id = item["ID"].ToString();
+                spotifyTrack track = spotify.GetTrack(id);
+
+                TrackInfo TrackWindow = new TrackInfo();
+
+                TrackWindow.Title = track.name;
+
+                TrackWindow.Title_Label.Content = track.name;
+
+                List<string> artists = new List<string>();
+                foreach (artistInfo artist in track.artists)
+                {
+                    artists.Add(artist.name);
+                }
+                TrackWindow.Artist_Label.Content = String.Join(", ", artists);
+
+                TrackWindow.Album_Label.Content = track.album.name;
+
+                TrackWindow.Explicit_CheckBox.IsChecked = track.@explicit;
+
+                TimeSpan duration = TimeSpan.FromMilliseconds(track.duration_ms);
+                TrackWindow.Duration_Label.Content = String.Format("{0:D2}:{1:D2}", duration.Minutes, duration.Seconds);
+
+                TrackWindow.ReleaseDate_Label.Content = track.album.release_date;
+
+                TrackWindow.Popularity_ProgressBar.Value = track.popularity;
+
+                TrackWindow.trackID_label.Content = id;
+
+                TrackWindow.Show();
+            }
+        }
+        
+    }
+
+    class track
+    {
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Album { get; set; }
+        public string ID { get; set; }
     }
 }

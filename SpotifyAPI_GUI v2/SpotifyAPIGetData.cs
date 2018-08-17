@@ -141,5 +141,18 @@ namespace SpotifyAPI_GUI_v2
 
             return playlist;
         }
+
+        public spotifyRecommened GetRecommended(string track_id)
+        {
+            string endPoint = "https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=" + track_id + "&min_popularity=50";
+            string response = MakeRequest(endPoint);
+            byte[] byteArray = Encoding.ASCII.GetBytes(response);
+            MemoryStream stream = new MemoryStream(byteArray);
+
+            var serializer = new DataContractJsonSerializer(typeof(spotifyRecommened));
+            spotifyRecommened tracks = (spotifyRecommened)serializer.ReadObject(stream);
+
+            return tracks;
+        }
     }
 }

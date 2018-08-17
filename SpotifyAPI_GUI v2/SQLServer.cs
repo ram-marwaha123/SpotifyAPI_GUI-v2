@@ -69,28 +69,6 @@ namespace SpotifyAPI_GUI_v2
             return set;
         }
 
-        public List<object> GetHighestOrLowest(string playlist_name, string column_name, bool descending)
-        {
-            List<object> trackData = new List<object>();
-
-            string playlist_choice = (playlist_name == "All Playlists") ? "" : playlist_name;
-            string asc_or_desc = (descending) ? "DESC" : "ASC";
-
-            string cmd = String.Format("EXEC dbo.sortTable @playlist_name = '{0}', @column_name = '{1}', @asc_or_desc = '{2}'", playlist_choice, column_name, asc_or_desc);
-            SqlDataReader reader = ReadCommand(cmd);
-
-            if (reader != null && reader.HasRows && reader.Read())
-            {
-                for (int col = 0; col < reader.FieldCount; col++)
-                {
-                    trackData.Add(reader[col]);
-                }
-            }
-            reader.Close();
-            return trackData;
-        }
-
-
         public Dictionary<string, HashSet<string>> GetAllArtistSongs()
         {
             Dictionary<string, HashSet<string>> artistTracks = new Dictionary<string, HashSet<string>>();
@@ -193,6 +171,13 @@ namespace SpotifyAPI_GUI_v2
             {
                 MessageBox.Show("Something Went Wrong, Please Try Again Later ://");
             }
+        }
+
+        public SqlDataAdapter GetDataForDataGrid(string playlist_name)
+        {
+            string cmd = String.Format("SELECT Title, Artist, Album, ID FROM dbo.Playlists WHERE Playlist = '{0}' OR 'All Playlists' = '{0}'", playlist_name);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd, connection);
+            return adapter;
         }
     }
 }
